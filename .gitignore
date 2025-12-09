@@ -1,4 +1,6 @@
 .config/vesktop/
+.config/Thunar/
+.config/xfce4/
 .config/Code/
 .config/astro/
 .config/autostart/

@@ -18,6 +18,11 @@ input_path = './templates/kitty-colors.conf'
 output_path = '~/.config/kitty/themes/matugen-theme.conf'
 post_hook = 'kitty +kitten themes --reload-in=all Matugen-Theme'
 
+[templates.fish]
+input_path = './templates/colors.fish'
+output_path = '~/.config/fish/themes/matugen.fish'
+post_hook = 'fish -C "source ~/.config/fish/themes/matugen.fish"'
+
 [templates.cava]
 input_path = '~/.config/matugen/templates/cava-colors.ini'
 output_path = '~/.config/cava/themes/your-theme'

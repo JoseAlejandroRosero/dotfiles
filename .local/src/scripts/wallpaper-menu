@@ -11,7 +11,8 @@ case "$XDG_SESSION_TYPE" in
 	   	;;
 		wayland)
 				CONFMATU="$HOME/.config/matugen/config_wayland.toml"
-				CHOICE=$(echo "Album Art\n$(command ls -v $FOLDER)" | wofi -i -p "Escoge un fondo de pantalla" -S dmenu)
+				WALLDIR="$FOLDER"$(ls -v $FOLDER | wofi -i -p "Carpeta:" -S dmenu)
+				CHOICE=$(echo "Album Art\n$(command ls -v $WALLDIR)" | wofi -i -p "Escoge un fondo de pantalla" -S dmenu)
 	 	;;
 esac
 
