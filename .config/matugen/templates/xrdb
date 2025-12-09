@@ -1,0 +1,14 @@
+
+dwm.normbordercolor: {{colors.outline.default.hex}}
+dwm.normbgcolor: {{colors.primary.default.hex}}
+dwm.normfgcolor: {{colors.on_primary.default.hex}}
+dwm.selbordercolor: {{colors.primary.default.hex}}
+dwm.selbgcolor: {{colors.primary_container.default.hex}}
+dwm.selfgcolor: {{colors.on_primary_container.default.hex}}
+
+dmenu.background : {{colors.primary.default.hex}} 
+dmenu.foreground : {{colors.on_primary.default.hex}}
+dmenu.selbackground : {{colors.primary_container.default.hex}}
+dmenu.selforeground : {{colors.on_primary_container.default.hex}}
+
+Xcursor.theme: /home/newyorkleck/.local/share/icons/Hatsune-Miku/cursors,

@@ -1,0 +1,108 @@
+@import "colors.css";
+
+* {
+  /* General taskbar font, I like maple mono ^-^*/
+  font-family: Maple Mono NFPropo;
+  font-size: 14px;
+  padding: 0px;
+  border-radius: 8px;
+  background: transparent;
+}
+
+window#waybar {
+  /* Linear gradients are used because it makes less harsh rounded border radius, gtk bug :p */ 
+  padding: 0px;
+  border-style: none;
+}
+
+menu,
+#network,
+#battery,
+#clock,
+#custom-power,
+#custom-swww,
+#tray,
+#memory,
+#workspaces,
+#bluetooth,
+#mpd,
+#pulseaudio {
+  background-image: linear-gradient(to bottom, @primary_fixed, @primary_container);
+
+  margin: 6px;
+  margin-right: 0px;
+  padding: 4px 8px;
+  color: @on_primary_container;
+
+  border-style: solid;
+  border-color: @outline_variant;
+  border-width: 1px;
+
+  transition-duration: 120ms;
+}
+
+tooltip{
+ background-image: linear-gradient(to bottom, @surface, @secondary); 
+ border-color: @outline;
+}
+
+tooltip label {
+  color: @on_secondary_container;
+}
+
+#clock {
+  margin-right: 6px;
+}
+
+menuitem:hover,
+#custom-power:hover,
+#custom-swww:hover,
+#clock:hover,
+#network:hover,
+#battery:hover,
+#mpd:hover,
+#bluetooth:hover,
+#pulseaudio:hover {
+  background-image: linear-gradient(to bottom, @on_primary, @primary_fixed_dim);
+  transition-duration: 120ms;
+}
+
+#custom-power {
+  font-weight: bold;
+  transition-duration: 120ms;
+}
+
+#battery.warning,
+#battery.critical,
+#battery.urgent,
+#bluetooth.disabled,
+#mpd.stopped,
+#mpd.disconnected,
+#network.disconnected {
+  color: @on_error;
+  background-image: linear-gradient(to bottom, @error, @error_container);
+}
+#workspaces button {
+  transition-duration: 100ms;
+  all: initial;
+  min-width: 0;
+  font-weight: bold;
+  margin-right: 0.2cm;
+  margin-left: 0.2cm;
+}
+
+#workspaces button:hover {
+  transition-duration: 120ms;
+  color: @on_background;
+}
+#workspaces button.hidden {
+  color: @on_background;
+  font-weight: bold;
+}
+#workspaces button.active {
+  color: @on_primary_fixed_variant;
+  font-weight: bold;
+}
+#workspaces button.urgent {
+  color: @error;
+}

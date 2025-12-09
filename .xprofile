@@ -1,0 +1,14 @@
+#!/bin/sh
+
+nm-applet &
+dwmblocks &
+snixembed &
+safeeyes &
+mpd &
+mpDris2 &
+sxhkd &
+RefreshPalette &
+xdotool key super+F5 &
+picom &
+keepassxc & 
+matugen image -c .config/matugen/config_x11.toml Desktop/wallpapers/AceAttorney.png &

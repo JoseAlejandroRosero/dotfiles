@@ -1,0 +1,34 @@
+[config.wallpaper]
+command = "feh"
+arguments = ["--bg-max","--no-fehbg"]
+set = true
+
+[templates.btop]
+input_path = './templates/btop.theme'
+output_path = '~/.config/btop/themes/matugen.theme'
+post_hook = "pgrep btop> /dev/null 2>&1 && pkill -12 btop || echo 'no btop'"
+
+[templates.dunst]
+input_path = './templates/dunstrc-colors'
+output_path = '~/.config/dunst/dunstrc'
+post_hook = 'dunstctl reload'
+
+[templates.kitty]
+input_path = './templates/kitty-colors.conf'
+output_path = '~/.config/kitty/themes/matugen-theme.conf'
+post_hook = 'kitty +kitten themes --reload-in=all Matugen-Theme'
+
+[templates.fish]
+input_path = './templates/colors.fish'
+output_path = '~/.config/fish/themes/matugen.fish'
+post_hook = 'fish -C "source ~/.config/fish/themes/matugen.fish"'
+
+[templates.cava]
+input_path = '~/.config/matugen/templates/cava-colors.ini'
+output_path = '~/.config/cava/themes/your-theme'
+post_hook = "pgrep cava > /dev/null 2>&1 && pkill -10 cava || echo 'no cava'"
+
+[templates.xrdb]
+input_path = './templates/xrdb'
+output_path = '~/.xrdb'
+post_hook = 'xrdb -merge ~/.xrdb && xdotool key super+F5'

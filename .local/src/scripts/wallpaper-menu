@@ -1,0 +1,29 @@
+#!/bin/sh
+
+FOLDER="$HOME/Desktop/wallpapers/"
+ALBUM_ART="/tmp/rmpc/AlbumArt"
+
+case "$XDG_SESSION_TYPE" in
+		x11)
+				CONFMATU="$HOME/.config/matugen/config_x11.toml"
+				WALLDIR="$FOLDER"$(ls -v $FOLDER | dmenu -fn "Maple Mono NFPropo:size=10" -c -l 7 -i -p "Carpeta:")
+				CHOICE=$(echo "Album Art\n$(ls -v $WALLDIR)" | dmenu -fn "Maple Mono NFPropo:size=10" -c -l 7 -i -p "Escoge un fondo de pantalla")
+	   	;;
+		wayland)
+				CONFMATU="$HOME/.config/matugen/config_wayland.toml"
+				CHOICE=$(echo "Album Art\n$(command ls -v $FOLDER)" | wofi -i -p "Escoge un fondo de pantalla" -S dmenu)
+	 	;;
+esac
+
+case $CHOICE in
+		"Album Art")
+				rmpc albumart --output $ALBUM_ART
+			   	WP="$ALBUM_ART"
+				;;
+		*.*)
+				WP="$WALLDIR/$CHOICE"
+				;;
+		*) exit 0 ;;
+esac
+
+matugen -t scheme-fidelity -c "$CONFMATU" image "$WP"

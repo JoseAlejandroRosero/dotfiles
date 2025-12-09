@@ -1,0 +1,74 @@
+@import ".config/waybar/colors.css";
+
+* {
+  font-family: Maple Mono;
+  background: transparent;
+  color: @primary;
+}
+
+#window {
+  color: @primary;
+  border-color: @primary;
+  border-style: solid;
+  border-width: 1px;
+
+  /*Linear gradient background instead of standard background, because it makes cleaner border-radius cuts, issa bug :p*/
+  background-image: linear-gradient(to bottom, @background 100%);
+  border-radius: 14px;
+}
+#scroll {
+  border-top-style: solid;
+  border-width: 1px;
+  border-color: @primary;
+}
+#inner-box {
+  padding-top: 12px;
+}
+#entry {
+  border-style: none;
+  border-color: @primary;
+  color: @primary;
+  padding: 6px;
+  margin-bottom: 8px;
+  margin-left: 12px;
+  margin-right: 12;
+
+  border-radius: 12px;
+}
+
+#entry:selected {
+  background: #27232b;
+  color: @primary;
+  font-weight: bold;
+  outline: none;
+}
+
+#input {
+  background-color: @background;
+  color: @primary;
+  border-color: @primary;
+
+  border-style: none;
+  border-bottom-style: solid;
+  border-width: 1px;
+
+  font-style: normal;
+
+  border-radius: 8;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+
+  padding: 12px;
+  margin: 8px;
+}
+		#input:focus {
+  background: #202020;
+  background-color: #202020;
+  border-color: @tertiary_container;
+  font-style: italic;
+}
+
+#img {
+  padding: 4px;
+  margin-right: 6px;
+}

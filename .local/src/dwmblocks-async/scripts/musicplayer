@@ -1,0 +1,49 @@
+#!/bin/sh
+
+if [ -z "$MUSIC_PLAYING_PLAYERS" ]; then
+	# if MUSIC_PLAYING_PLAYERS is not set, use the default players
+	MUSIC_PLAYING_PLAYERS="mpd firefox mpv"
+fi
+
+META="{{ trunc(album,17) }} - {{ trunc(title,17) }}"
+
+VOLUME="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | mawk -W posix '{sub(/\./,","); volume = $2 *100/1; print volume}')"
+
+if [ -z "$VOLUME" ]; then
+    exit 1
+fi
+
+if [ "$VOLUME" -gt 40 ]; then
+    VOLUME_ICON=""
+elif [ "$VOLUME" -gt 10 ]; then
+    VOLUME_ICON=""
+else
+    VOLUME_ICON=""
+fi
+
+case $BLOCK_BUTTON in
+		1) setsid -wf kitty -e rmpc ;;
+		2) playerctl --player mpd play-pause;  ;;
+		3) setsid -wf kitty -e wiremix --enforce-max-volume -m 100; ;;
+		4) wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+; pkill -40 "${STATUSBAR:-dwmblocks}" ;;
+		5) wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-; pkill -40 "${STATUSBAR:-dwmblocks}" ;;
+		6) playerctl --player mpd next ;;
+		7) playerctl --player mpd previous ;;
+esac
+
+if wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q "[MUTED]"; then
+    VOLUME_ICON=""
+fi
+
+
+for PLAYER in $MUSIC_PLAYING_PLAYERS; do
+# if the player is not playing, continue to the next player, until we find one that is playing
+	[ "$(playerctl --player=$PLAYER status 2>/dev/null)" != "Playing" ] && continue
+		ICON=""
+		echo "[$VOLUME_ICON$VOLUME% $ICON$(playerctl metadata --player $PLAYER --format "$META")]"
+		exit 0
+done
+
+# just display what's paused in mpd, in case nothing is playing
+ICON="❚❚"
+echo "[$VOLUME_ICON$VOLUME% $ICON]"

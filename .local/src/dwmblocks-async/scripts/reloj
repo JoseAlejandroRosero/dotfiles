@@ -1,0 +1,9 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+		1) setsid -wf kitty -e calcurse ;;
+		6) setsid -wf kitty -e vim "$0" ;;
+esac
+
+ICON="󰥔"
+echo "[$ICON$(date '+%c')]"
