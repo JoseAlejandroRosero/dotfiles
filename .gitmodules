@@ -1,4 +1,0 @@
-[submodule "st-kitty"]
-	path = st-kitty
-	url = https://github.com/sergei-grechanik/st-graphics.git
-	branch = my_st
