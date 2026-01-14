@@ -1,0 +1,109 @@
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+(
+    default_album_art_path: None,
+    draw_borders: false,
+    show_song_table_header: true,
+    symbols: (song: " ", dir: " ", playlist: "󰲸 ", marker: "\u{e0b0}"),
+    layout: Split(
+        direction: Vertical,
+        panes: [
+            (
+		borders: "TOP | BOTTOM",
+		pane: Pane(Header),
+                size: "3",
+            ),
+            (
+                pane: Split(
+			direction: Vertical,
+			panes: [(size: "75%",pane: Pane(TabContent)),(size: "25%", pane: Pane(Cava))]
+		),
+		size: "100%",
+            ),
+            (
+		pane: Pane(ProgressBar),
+                size: "1",
+            ),
+        ],
+    ),
+    progress_bar: (
+        symbols: ["\u{ee03}", "\u{ee04}", "█", "\u{ee04}", "\u{ee05}"],
+        track_style: (bg: "#79341b"),
+        elapsed_style: (fg: "#000000", bg: "#3a90ff"),
+        thumb_style: (fg: "#000000", bg: "#3a90ff"),
+    ),
+    scrollbar: (
+        symbols: ["│", "█", "▲", "▼"],
+        track_style: (),
+        ends_style: (),
+        thumb_style: (fg: "#ffb59c"),
+    ),
+    browser_column_widths: [20, 38, 42],
+    text_colors: "#ffb59c",
+    background_colors: None,
+    header_background_colors: None,
+    modal_background_colors: None,
+    modal_backdrop: true,
+    tab_bar: (active_style: (fg: "#ffb59c", modifiers: "Bold"), inactive_style: ()),
+    borders_style: (fg: "#a98a80"),
+    highlighted_item_style: (fg: "#ffdbcf", modifiers: "Bold"),
+    current_item_style: (fg: "#000000", bg: "#f4622a", modifiers: "Bold"),
+    highlight_border_style: (fg: "#594139"),
+    song_table_format: [
+        (
+            prop: (kind: Property(Artist), style: (fg: "#ffb59c"), default: (kind: Text("Unknown"))),
+            width: "25%",
+        ),
+        (
+		    prop: (kind: Property(Title), style: (fg: "#ffb59c"), default: (kind: Text("Unknown"))),
+            width: "65%",
+        ),
+	(
+		prop: (kind: Property(Duration), style: (fg: "#ffb59c"), default: (kind: Text("-"))),
+		width: "10%",
+	),
+    ],
+    header: (
+        rows: [
+            (
+                left: [
+                    (kind: Text(" "), style: (fg: "#a9c7ff", modifiers: "Bold")),
+                    (kind: Property(Status(StateV2(playing_label:"", paused_label: "", stopped_label: ""))), style: (fg: "#a9c7ff", modifiers: "Bold")),
+		    (kind: Property(Status(RepeatV2(on_label: " |  ", off_label: ""))),style: (fg: "#a9c7ff", modifiers: "Bold")),
+		    (kind: Property(Status(RandomV2(on_label: " |  ", off_label: ""))),style: (fg: "#a9c7ff", modifiers: "Bold")),
+		    (kind: Property(Status(ConsumeV2(on_label: " | 󰮯 ", oneshot_label: " | 󰮯 ", off_label: ""))),style: (fg: "#a9c7ff", modifiers: "Bold")),
+		    (kind: Property(Status(SingleV2(on_label: " | 󰲠 ", oneshot_label: "󰲠 ", off_label: ""))),style: (fg: "#a9c7ff", modifiers: "Bold")),
+                    (kind: Text("  "), style: (fg: "#a9c7ff", modifiers: "Bold")),
+                    (kind: Text("("), style: (fg: "#a9c7ff", modifiers: "Bold")),
+		    (kind: Property(Status(Bitrate)), style: (fg: "#a9c7ff", modifiers: "Bold")),
+                    (kind: Text("kb/s)"), style: (fg: "#a9c7ff", modifiers: "Bold")),
+                ],
+                center: [
+                    (kind: Transform(Truncate(content: (kind: Property(Song(Artist)), style: (fg: "#a9c7ff", modifiers: "Bold")), from_start: false, length: 12)),
+                        default: (kind: Text(""))
+                    ),
+                    (kind: Text(" - "), style: (fg : "#a9c7ff", modifiers: "Bold")),
+                    (kind: Transform(Truncate(content: (kind: Property(Song(Title)), style: (fg: "#a9c7ff", modifiers: "Bold")), from_start: false, length: 20)),
+                        default: (kind: Text(""))
+                    )
+                ],
+                right: [
+                    (kind: Property(Widget(Volume)), style: (fg: "#a9c7ff", modifiers: "Bold")),
+                ]
+            )
+        ],
+    ),
+    cava: (
+    	bar_symbols: ['▁', '▂', '▃', '▄', '▅', '▆', '▇', '█'],
+	inverted_bar_symbols: ['▔', '🮂', '🮃', '▀', '🮄', '🮅', '🮆', '█'],
+	bar_width: 1, // width of a single bar in columns
+	bar_spacing: 1, // free space between bars in columns
+	orientation: Bottom,
+	bar_colors: Gradient({
+		60: "rgb(255, 181, 156)",
+		40: "rgb(255, 181, 156)",
+		20: "rgb(169, 199, 255)"
+	})
+    )
+)

@@ -1,0 +1,46 @@
+[config.wallpaper]
+command = "feh"
+arguments = ["--bg-max","--no-fehbg"]
+set = true
+
+[templates.btop]
+input_path = './templates/btop.theme'
+output_path = '~/.config/btop/themes/matugen.theme'
+post_hook = "pgrep btop> /dev/null 2>&1 && pkill -12 btop || echo 'no btop'"
+
+[templates.dunst]
+input_path = './templates/dunstrc-colors'
+output_path = '~/.config/dunst/dunstrc'
+post_hook = 'dunstctl reload'
+
+[templates.rmpc]
+inpu_path = './templates/Matugen.ron'
+output_path = '~/.config/rmpc/themes/Matugen.ron'
+
+[templates.yazi]
+inpu_path = './templates/yazi-theme.toml'
+output_path = '~/.config/yazi/theme.toml'
+
+[templates.cava]
+input_path = '~/.config/matugen/templates/cava-colors.ini'
+output_path = '~/.config/cava/themes/your-theme'
+post_hook = "pgrep cava > /dev/null 2>&1 && pkill -10 cava || echo 'no cava'"
+
+[templates.xrdb]
+input_path = './templates/xrdb'
+output_path = '~/.xresources'
+post_hook = 'xrdb-reload-dwm'
+
+[templates.color-scheme]
+input_path = './templates/Matugen.colors'
+output_path = '~/.local/share/color-schemes/Matugen.colors'
+
+[templates.gtk3]
+input_path = './templates/gtk-colors.css'
+output_path = '~/.config/gtk-3.0/colors.css'
+post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-{{mode}}'
+
+[templates.gtk4]
+input_path = './templates/gtk-colors.css'
+output_path = '~/.config/gtk-4.0/colors.css'
+post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-{{mode}}'

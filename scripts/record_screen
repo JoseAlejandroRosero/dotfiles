@@ -1,0 +1,13 @@
+#!/bin/sh
+
+start_recording() {
+	notify-send -e -t 5000 'recording started'
+	wf-recorder -a -f ~/Videos/Captures/$(date +%F-%H%M%S).mkv
+}
+
+stop_recording() {
+	killall wf-recorder
+	notify-send -e -t 5000 'recording stopped'
+}
+
+pgrep wf-recorder > /dev/null 2>&1 && stop_recording || start_recording

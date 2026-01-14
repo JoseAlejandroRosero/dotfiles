@@ -1,0 +1,84 @@
+# Screen locker
+super + @s
+		slock
+
+super + control + @s
+		slock systemctl -i hibernate
+
+# menus
+super + shift + @s
+		screenshot-menu
+
+super + @w
+		wallpaper-menu
+
+# Application launcher commands
+super + @n
+		librewolf
+
+#super + @Return
+#		kitty
+
+# replacement for dwm commands usinmg dwmc patch
+#super + @b
+#		dwmmc togglebar
+#
+#super + @j
+#		dwmc focusstack +1
+#
+#super + @k
+#		dwmc focusstack -1
+
+#super + @i
+#		dwmc incnmaster +1
+
+#super + @p
+#		dwmc incnmaster -1
+
+#super + @h
+#		dwmc setmfact -0.05
+
+#super + @l
+#		dwmc setmfact +0.05
+
+#super + shift + @Return
+#		dwmc zoom
+
+#super + @q
+#		dwmc killclient
+
+#super + shift + @space
+#		dwmc togglefloating
+# Tag keys
+# viewing tags
+#
+#super + @0
+#		dwmc viewall
+#
+#super + @{1,2,3,4,5,6,7,8,9}
+#		dwmc viewex {0,1,2,3,4,5,6,7,8}
+
+# toggling clients
+
+#super + control + @{1,2,3,4,5,6,7,8,9}
+#		dwmc toggleviewex {0,1,2,3,4,5,6,7,8}
+
+# quitting dwm
+
+#super+ shift + @e
+#		dwmc quit
+
+# Volume and Media control keys
+XF86Audio{Prev,Next,Play}
+ playerctl {previous,next,play-pause} \
+ pgrep dwmblocks > /dev/null 2>&1 && pkill -40 dwmblocks || exit 0
+
+XF86Audio{Mute,LowerVolume,RaiseVolume}
+ /usr/bin/amixer -D pipewire sset Master {togglemute,2%-,2%+} \
+ pgrep dwmblocks > /dev/null 2>&1 && pkill -40 dwmblocks || exit 0
+
+XF86MonBrightnessDown
+		brightnessctl set 5%-
+
+XF86MonBrightnessUp
+		brightnessctl set 5%+

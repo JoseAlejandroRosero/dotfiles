@@ -1,0 +1,7 @@
+alias \
+\
+pvea="source ~/pvenv/bin/activate" \
+fk="sudo !!" \
+la="ls -lah --color=auto --group-directories-first" \
+grep="grep --color=auto" \
+

@@ -1,0 +1,11 @@
+@import 'colors.css';
+
+* {
+	font-family: "Maple Mono NFPropo", sans-serif;
+	font-weight: 600;
+}
+
+@define-color headerbar_backdrop_color @window_bg_color;
+@define-color card_shade_color @headerbar_shade_color;
+@define-color shade_color @headerbar_shade_color;
+

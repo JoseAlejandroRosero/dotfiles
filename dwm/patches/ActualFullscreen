@@ -1,0 +1,65 @@
+From eea13010ffc3983392857ee1e3804e3aa1064d7a Mon Sep 17 00:00:00 2001
+From: Soenke Lambert <s.lambert@mittwald.de>
+Date: Wed, 13 Oct 2021 18:21:09 +0200
+Subject: [PATCH] Fullscreen current window with [Alt]+[Shift]+[f]
+
+This actually fullscreens a window, instead of just hiding the statusbar
+and applying the monocle layout.
+---
+ config.def.h | 1 +
+ dwm.1        | 3 +++
+ dwm.c        | 8 ++++++++
+ 3 files changed, 12 insertions(+)
+
+Index: dwm/config.def.h
+===================================================================
+--- dwm.orig/config.def.h
++++ dwm/config.def.h
+@@ -90,6 +90,7 @@ static const Key keys[] = {
+ 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+ 	{ MODKEY,                       XK_space,  setlayout,      {0} },
+ 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
++	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
+ 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
+ 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
+ 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
+Index: dwm/dwm.1
+===================================================================
+--- dwm.orig/dwm.1
++++ dwm/dwm.1
+@@ -116,6 +116,9 @@ Zooms/cycles focused window to/from mast
+ .B Mod1\-Shift\-c
+ Close focused window.
+ .TP
++.B Mod1\-Shift\-f
++Toggle fullscreen for focused window.
++.TP
+ .B Mod1\-Shift\-space
+ Toggle focused window between tiled and floating state.
+ .TP
+Index: dwm/dwm.c
+===================================================================
+--- dwm.orig/dwm.c
++++ dwm/dwm.c
+@@ -259,6 +259,7 @@ static void tagmon(const Arg *arg);
+ static void tile(Monitor *m);
+ static void togglebar(const Arg *arg);
+ static void togglefloating(const Arg *arg);
++static void togglefullscr(const Arg *arg);
+ static void toggletag(const Arg *arg);
+ static void toggleview(const Arg *arg);
+ static void unfocus(Client *c, int setfocus);
+@@ -2233,6 +2234,13 @@ togglefloating(const Arg *arg)
+ }
+ 
+ void
++togglefullscr(const Arg *arg)
++{
++  if(selmon->sel)
++    setfullscreen(selmon->sel, !selmon->sel->isfullscreen);
++}
++
++void
+ toggletag(const Arg *arg)
+ {
+ 	unsigned int newtags;
