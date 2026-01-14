@@ -1,0 +1,22 @@
+
+Xcursor.theme: /home/newyorkleck/.local/share/icons/BocchitheCursor/cursors
+
+st.color4:	#f6adff
+
+st.foregorund:		#eddeea
+st.background:		#28002d
+st.cursorColor:		#d4c1d2
+st.reverse-cursor:	#362e36
+
+dwm.normbordercolor:	#9d8b9c
+dwm.normbgcolor:	#f6adff
+dwm.normfgcolor:	#560068
+dwm.selbordercolor:	#f6adff
+dwm.selbgcolor:		#8919a1
+dwm.selfgcolor:		#fff1fb
+
+dmenu.background : 	#f6adff 
+dmenu.foreground : 	#560068
+dmenu.selbackground : 	#8919a1
+dmenu.selforeground :	#fff1fb
+
