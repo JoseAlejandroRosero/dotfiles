@@ -35,8 +35,8 @@
 @define-color warning_color {{colors.error.default.hex | auto_lightness: 20.0}};
 @define-color warning_bg_color {{colors.error_container.default.hex | auto_lightness: 20.0}};
 @define-color warning_fg_color {{colors.on_error.default.hex | auto_lightness: 20.0}};
-@define-color headerbar_shade_color {{colors.shadow.default.rgba | set_alpha: 0.36}}
-@define-color scrollbar_outline_color {{colors.outline_variant.default.rgba | set_alpha: 0.36}}
+@define-color headerbar_shade_color {{colors.shadow.default.rgba | set_alpha: 0.36}};
+@define-color scrollbar_outline_color {{colors.outline_variant.default.rgba | set_alpha: 0.36}};
 
 .navigation-sidebar {
 	background-color: {{colors.on_surface_variant.default.hex}}

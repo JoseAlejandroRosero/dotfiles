@@ -3,107 +3,225 @@
 #![enable(unwrap_variant_newtypes)]
 (
     default_album_art_path: None,
-    draw_borders: false,
+    draw_borders: true,
     show_song_table_header: true,
-    symbols: (song: " ", dir: " ", playlist: "󰲸 ", marker: "\u{e0b0}"),
+    symbols: (song: "", dir: "", playlist: "󰲸", marker: "\u{e0b0}", ellipsis: "..."),
     layout: Split(
         direction: Vertical,
         panes: [
             (
-		borders: "TOP | BOTTOM",
-		pane: Pane(Header),
-                size: "3",
-            ),
-            (
-                pane: Split(
-			direction: Vertical,
-			panes: [(size: "75%",pane: Pane(TabContent)),(size: "25%", pane: Pane(Cava))]
+		size: "3",
+	        pane: Split(
+		   direction: Horizontal,
+		   panes: [
+		      (
+		         size: "25%",
+		         borders: "ALL",
+			 border_symbols: Rounded,
+		         pane: Pane(Tabs),
+		      ),
+		      (
+		         size: "75%",
+			 borders: "ALL",
+			 border_symbols: Rounded,
+			 pane: Pane(Header)
+		      )
+		   ],
 		),
-		size: "100%",
             ),
             (
-		pane: Pane(ProgressBar),
+	        size: "100%",
+	        pane: Split(
+		    direction: Horizontal,
+		    panes: [
+		        (
+			    size: "60%",
+			    pane: Split(
+			        direction: Vertical,
+				panes: [
+			            (
+				        size: "75%",
+				        pane: Pane(TabContent)
+				    ),
+				    (
+				        size: "25%",
+					pane: Pane(Cava)
+				    )
+			        ]
+			    ),
+		        ),
+			(
+			    size: "40%",
+			    pane: Split(
+			        direction: Vertical,
+				panes: [
+				    (
+				        size: "100%",
+					borders: "TOP | RIGHT | LEFT",
+					border_symbols: Rounded,
+					pane: Pane(AlbumArt)
+				    ),
+				    (
+				        size: "7",
+					borders: "BOTTOM | RIGHT | LEFT",
+					border_symbols: Rounded,
+					border_title: [(kind: Text(" Lyrics "))],
+					border_title_aligntment: Center,
+					pane: Pane(Lyrics)
+				    )
+				],
+			    ),
+			),
+		    ],
+	        ),
+            ),
+            (
                 size: "1",
+		pane: Pane(ProgressBar),
             ),
         ],
     ),
     progress_bar: (
         symbols: ["\u{ee03}", "\u{ee04}", "█", "\u{ee04}", "\u{ee05}"],
-        track_style: (bg: "{{ colors.secondary_container.default.hex }}"),
-        elapsed_style: (fg: "{{ colors.on_tertiary_container.default.hex }}", bg: "{{ colors.tertiary_container.default.hex }}"),
-        thumb_style: (fg: "{{ colors.on_tertiary_container.default.hex }}", bg: "{{ colors.tertiary_container.default.hex }}"),
+        track_style: (fg: "{{ colors.on_secondary.default.hex }}"),
+        elapsed_style: (fg: "{{ colors.secondary.default.hex }}"),
+        thumb_style: (fg: "{{ colors.secondary.default.hex }}"),
     ),
     scrollbar: (
         symbols: ["│", "█", "▲", "▼"],
-        track_style: (),
-        ends_style: (),
-        thumb_style: (fg: "{{ colors.secondary.default.hex }}"),
+        track_style: (fg:"{{ colors.secondary.default.hex }}"),
+        ends_style: (fg: "{{ colors.secondary_fixed.default.hex }}"),
+        thumb_style: (fg: "{{ colors.primary.default.hex }}"),
     ),
     browser_column_widths: [20, 38, 42],
-    text_colors: "{{ colors.primary.default.hex }}",
+    text_color: "{{ colors.secondary.default.hex }}",
     background_colors: None,
     header_background_colors: None,
     modal_background_colors: None,
     modal_backdrop: true,
-    tab_bar: (active_style: (fg: "{{ colors.primary_fixed_dim.default.hex }}", modifiers: "Bold"), inactive_style: ()),
+    tab_bar: (
+    	active_style: (fg: "{{ colors.on_secondary.default.hex }}", bg: "{{ colors.secondary.default.hex }}", modifiers: "Bold"),
+	inactive_style: (fg: "{{ colors.secondary.default.hex }}", modifiers: "Bold")
+    ),
     borders_style: (fg: "{{ colors.outline.default.hex }}"),
-    highlighted_item_style: (fg: "{{ colors.primary_fixed.default.hex }}", modifiers: "Bold"),
-    current_item_style: (fg: "{{ colors.on_primary_container.default.hex }}", bg: "{{ colors.primary_container.default.hex }}", modifiers: "Bold"),
-    highlight_border_style: (fg: "{{ colors.outline_variant.default.hex }}"),
+    highlighted_item_style: (fg: "{{ colors.secondary.default.hex }}", modifiers: "Bold"),
+    current_item_style: (fg: "{{ colors.secondary.default.hex }}", bg: "{{ colors.inverse_primary.default.hex }}", modifiers: "Bold"),
+    highlight_border_style: (fg: "{{ colors.secondary.default.hex }}"),
     song_table_format: [
         (
-            prop: (kind: Property(Artist), style: (fg: "{{ colors.secondary_fixed_dim.default.hex }}"), default: (kind: Text("Unknown"))),
+            prop: (
+	        kind: Property(Artist),
+		style: (fg: "{{ colors.primary.default.hex }}"),
+		default: (kind: Text("Unknown"), fg: "{{ colors.primary_fixed.default.hex }}")
+	    ),
             width: "25%",
         ),
         (
-		    prop: (kind: Property(Title), style: (fg: "{{ colors.secondary_fixed_dim.default.hex }}"), default: (kind: Text("Unknown"))),
+	    prop: (
+	        kind: Property(Title),
+	        style: (fg: "{{ colors.primary.default.hex }}"),
+		default: (kind: Text("Unknown"), fg: "{{ colors.primary_fixed.default.hex }}")
+	    ),
             width: "65%",
         ),
 	(
-		prop: (kind: Property(Duration), style: (fg: "{{ colors.secondary_fixed_dim.default.hex }}"), default: (kind: Text("-"))),
-		width: "10%",
+	    prop: (
+	        kind: Property(Duration),
+		style: (fg: "{{ colors.primary.default.hex }}"),
+		default: (kind: Text("-"), fg: "{{ colors.primary_fixed.default.hex }}")
+	    ),
+	    width: "10%",
 	),
     ],
     header: (
         rows: [
             (
                 left: [
-                    (kind: Text(" "), style: (fg: "{{ colors.tertiary_fixed_dim.default.hex }}", modifiers: "Bold")),
-                    (kind: Property(Status(StateV2(playing_label:"", paused_label: "", stopped_label: ""))), style: (fg: "{{ colors.tertiary_fixed_dim.default.hex }}", modifiers: "Bold")),
-		    (kind: Property(Status(RepeatV2(on_label: " |  ", off_label: ""))),style: (fg: "{{ colors.tertiary_fixed_dim.default.hex }}", modifiers: "Bold")),
-		    (kind: Property(Status(RandomV2(on_label: " |  ", off_label: ""))),style: (fg: "{{ colors.tertiary_fixed_dim.default.hex }}", modifiers: "Bold")),
-		    (kind: Property(Status(ConsumeV2(on_label: " | 󰮯 ", oneshot_label: " | 󰮯 ", off_label: ""))),style: (fg: "{{ colors.tertiary_fixed_dim.default.hex }}", modifiers: "Bold")),
-		    (kind: Property(Status(SingleV2(on_label: " | 󰲠 ", oneshot_label: "󰲠 ", off_label: ""))),style: (fg: "{{ colors.tertiary_fixed_dim.default.hex }}", modifiers: "Bold")),
-                    (kind: Text("  "), style: (fg: "{{ colors.tertiary_fixed_dim.default.hex }}", modifiers: "Bold")),
-                    (kind: Text("("), style: (fg: "{{ colors.tertiary_fixed_dim.default.hex }}", modifiers: "Bold")),
-		    (kind: Property(Status(Bitrate)), style: (fg: "{{ colors.tertiary_fixed_dim.default.hex }}", modifiers: "Bold")),
-                    (kind: Text("kb/s)"), style: (fg: "{{ colors.tertiary_fixed_dim.default.hex }}", modifiers: "Bold")),
+                    (kind: Text(" "), style: (fg: "{{ colors.tertiary.default.hex }}", modifiers: "Bold")),
+                    (
+		        kind: Property(Status(StateV2(playing_label:"", paused_label: "", stopped_label: ""))),
+			style: (fg: "{{ colors.tertiary.default.hex }}", modifiers: "Bold")
+		    ),
+		    (
+		        kind: Property(Status(RepeatV2(on_label: " |  ", off_label: ""))),
+			style: (fg: "{{ colors.tertiary.default.hex }}", modifiers: "Bold")
+		    ),
+		    (
+		        kind: Property(Status(RandomV2(on_label: " |  ", off_label: ""))),
+			style: (fg: "{{ colors.tertiary.default.hex }}", modifiers: "Bold")
+		    ),
+		    (
+		        kind: Property(Status(ConsumeV2(on_label: " | 󰮯 ", oneshot_label: " | 󰮯 ", off_label: ""))),
+			style: (fg: "{{ colors.tertiary.default.hex }}", modifiers: "Bold")
+		    ),
+		    (
+		        kind: Property(Status(SingleV2(on_label: " | 󰲠 ", oneshot_label: "󰲠 ", off_label: ""))),
+			style: (fg: "{{ colors.tertiary.default.hex }}", modifiers: "Bold")
+		    ),
+                    (kind: Text("  "), style: (fg: "{{ colors.tertiary.default.hex }}", modifiers: "Bold")),
+                    (kind: Text("("), style: (fg: "{{ colors.tertiary.default.hex }}", modifiers: "Bold")),
+		    (kind: Property(Status(Bitrate)), style: (fg: "{{ colors.tertiary.default.hex }}", modifiers: "Bold")),
+                    (kind: Text("kb/s)"), style: (fg: "{{ colors.tertiary.default.hex }}", modifiers: "Bold")),
                 ],
                 center: [
-                    (kind: Transform(Truncate(content: (kind: Property(Song(Artist)), style: (fg: "{{ colors.tertiary_fixed_dim.default.hex }}", modifiers: "Bold")), from_start: false, length: 12)),
+                    (
+		        kind: Transform(
+		            Truncate(
+			        content: (
+			            kind: Property(Song(Artist)), style: (fg: "{{ colors.tertiary.default.hex }}", modifiers: "Bold")
+				),
+			        from_start: false, length: 12
+			    )
+			),
                         default: (kind: Text(""))
                     ),
-                    (kind: Text(" - "), style: (fg : "{{ colors.tertiary_fixed_dim.default.hex }}", modifiers: "Bold")),
-                    (kind: Transform(Truncate(content: (kind: Property(Song(Title)), style: (fg: "{{ colors.tertiary_fixed_dim.default.hex }}", modifiers: "Bold")), from_start: false, length: 20)),
+                    (kind: Text(" - "), style: (fg : "{{ colors.tertiary.default.hex }}", modifiers: "Bold")),
+                    (
+		        kind: Transform(
+			    Truncate(
+			        content: (
+				    kind: Property(Song(Title)), style: (fg: "{{ colors.tertiary.default.hex }}", modifiers: "Bold")
+				),
+			    from_start: false, length: 20)
+			),
                         default: (kind: Text(""))
                     )
                 ],
                 right: [
-                    (kind: Property(Widget(Volume)), style: (fg: "{{ colors.tertiary_fixed_dim.default.hex }}", modifiers: "Bold")),
+                    (kind: Property(Widget(Volume)), style: (fg: "{{ colors.tertiary.default.hex }}", modifiers: "Bold")),
                 ]
             )
         ],
+    ),
+    browser_song_format: [
+        (
+            kind: Group([
+                (kind: Property(Track), style: (fg: "{{ colors.primary.default.hex }}")),
+                (kind: Text(" ")),
+            ])
+        ),
+        (
+            kind: Group([
+                (kind: Property(Artist), style: (fg: "{{ colors.primary.default.hex }}")),
+                (kind: Text(" - ")),
+                (kind: Property(Title), style: (fg: "{{ colors.primary.default.hex }}")),
+            ]),
+            default: (kind: Property(Filename), style: (fg: "{{ colors.primary.default.hex }}"))
+        ),
+    ],
+    lyrics: (
+        timestamps: false,
     ),
     cava: (
     	bar_symbols: ['▁', '▂', '▃', '▄', '▅', '▆', '▇', '█'],
 	inverted_bar_symbols: ['▔', '🮂', '🮃', '▀', '🮄', '🮅', '🮆', '█'],
 	bar_width: 1, // width of a single bar in columns
 	bar_spacing: 1, // free space between bars in columns
-	orientation: Bottom,
+	orientation: Horizontal,
 	bar_colors: Gradient({
-		60: "{{ colors.primary.default.rgb }}",
-		40: "{{ colors.secondary.default.rgb }}",
-		20: "{{ colors.tertiary.default.rgb }}"
+		0: "{{ colors.primary_container.default.rgb }}",
+		50: "{{ colors.primary.default.rgb }}",
+		100: "{{ colors.on_primary_container.default.rgb }}"
 	})
     )
 )

@@ -1,0 +1,99 @@
+
+conky.config = {
+    alignment = 'top_right',
+    background = true,
+    border_width = 1,
+    cpu_avg_samples = 2,
+    default_color = '{{colors.inverse_on_surface.default.hex}}',
+    default_outline_color = '{{colors.outline.default.hex}}',
+    default_shade_color = '{{colors.shadow.default.hex}}',
+    color1 = '{{colors.primary_container.default.hex}}',
+    color2 = '{{colors.source_color.default.hex}}',
+    color3 = '{{colors.secondary_container.default.hex}}',
+    color4 = '{{colors.primary_container.default.hex}}',
+    color5 = '{{colors.tertiary_container.default.hex}}',
+    double_buffer = true,
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    extra_newline = false,
+    font = 'Maple Mono NFPropo:size=10',
+    gap_x = 14,
+    gap_y = 46,
+    minimum_height = 220,
+    maximum_width = 1100,
+    minimum_width = 270,
+    net_avg_samples = 2,
+    no_buffers = true,
+    nvidia_display='0',
+    out_to_console = false,
+    out_to_ncurses = false,
+    out_to_stderr = false,
+    out_to_x = false,
+    out_to_wayland = true,
+    own_window = true,
+    own_window_class = 'Conky',
+    own_window_transparent = false,
+    own_window_argb_visual = true,
+    own_window_argb_value = 190,
+    own_window_type = 'desktop',
+    own_window_hints ='undecorated,sticky,skip_taskbar,skip_pager,below',
+    show_graph_range = false,
+    short_units = true,
+    show_graph_scale = false,
+    stippled_borders = 0,
+    update_interval = 1.0,
+    uppercase = false,
+    use_spacer = 'none',
+    use_xft = true,
+    format_human_readable = no
+}
+
+conky.text = [[
+# INFORMACION DEL SISTEMA OPERATIVO
+${color1}${voffset -2} $hr${color}
+${color1}${voffset 2}${goto 32}${font Maple Mono NFPropo:size=36}t${font}${color}
+${goto 85}${voffset -60}${font Noto Sans:size=10:style:bold}
+${goto 85}Kernel: $kernel
+${goto 85}Uptime: ${color}$uptime_short
+# CPU
+${color1}${font ConkySymbols:size=16}f${font}${voffset -10} $hr${color}
+${goto 48}${voffset -2}${font Barlow:size=10:style:bold}${texeci 86400 cat /proc/cpuinfo | grep 'model name' | uniq | cut -c 13-52}${font}
+${voffset 1}${color1}${goto 6}1:${color}${cpu cpu0}% ${goto 50}${color2}${cpubar cpu0 9,50}${goto 105}${freq_g 0}${color}${goto 140}${color1}2:${color}${goto 154}${cpu cpu1}%${goto 186}${color2}${cpubar cpu1 9,50} ${freq_g 1}${color}
+${color1}${goto 6}3:${color}${cpu cpu2}% ${goto 50}${color2}${cpubar cpu2 9,50}${goto 105}${freq_g 2}${color}${goto 140}${color1}4:${color}${goto 154}${cpu cpu3}%${goto 186}${color2}${cpubar cpu3 9,50} ${freq_g 3}${color}
+${color1}${goto 6}5:${color}${cpu cpu4}% ${goto 50}${color2}${cpubar cpu4 9,50}${goto 105}${freq_g 4}${color}${goto 140}${color1}6:${color}${goto 154}${cpu cpu5}%${goto 186}${color2}${cpubar cpu5 9,50} ${freq_g 5}${color}
+${color1}${goto 6}7:${color}${cpu cpu6}% ${goto 50}${color2}${cpubar cpu6 9,50}${goto 105}${freq_g 6}${color}${goto 140}${color1}8:${color}${goto 154}${cpu cpu7}%${goto 186}${color2}${cpubar cpu7 9,50} ${freq_g 7}${color}
+# ESTADO DEL SISTEMA
+${voffset -2}${color1}${font ConkySymbols:size=16}h${font}${voffset -10} $hr${color}
+${color1}${goto 35}CPU: ${color}${exec sensors | grep 'Package id 0' | awk 'NR==1{print $4}'} 
+${color1}${goto 35}NVMe1: ${color}${exec sensors | grep 'Composite' | awk 'NR==1{print $2}'} ${alignr}${color1}NVMe2: ${color}${exec sensors | grep 'Composite' | awk 'NR==2{print $2}'}
+${color1}${goto 35}SYSTEMP: ${color}${exec sensors | grep 'temp1' | awk 'NR==2{print $2}'}
+# BATERIA
+${voffset -4}${color1}${font FontAwesome:style=Bold:size=17}A${font}${voffset -8} $hr
+${voffset -2}${goto 28}${if_match ${battery_percent BAT1} < 30}${color4}${else}${color5}${endif}${font Font Awesome 6 Free:style=Solid:size=12} ${font}${battery_percent BAT1}% ${color}${alignr 2}${color2}${battery_bar 8,75 BAT1}${color}
+${goto 34}${if_existing /sys/class/power_supply/BAT1/status Charging}${font Font Awesome 6 Free:style=Solid:size=8}󰂄${font} Cargando${else}${font FontAwesome:style=Solid:size=12}󱧥${font} Descargando${endif}${alignr}${color white}${battery_time BAT1}
+# MEMORIA RAM Y ZRAM
+${color1}${font ConkySymbols:size=16}J${font}${voffset -12} $hr${color}
+${color1}${goto 35}RAM : ${color}$mem/$memmax ${alignr}$memperc% ${color2} ${membar 8,75}${color}
+${color1}${goto 35}ZRAM: ${color}$swap/$swapmax ${alignr}$swapperc% ${color2} ${swapbar 8,75}${color}
+# PROCESOS
+${color1}${font ConkySymbols:size=14}n${font} ${voffset -4} PROCESOS ${color}${color1}${goto 185}CPU ${alignr 6}MEM${color}
+${voffset -12}${color1}${goto 35}${hr}${color}
+${voffset -6}${goto 35}${top name 1}${color}${goto 170}${top cpu 1}% ${alignr}${top mem 1}
+${goto 35}${top name 2}${color}${goto 170}${top cpu 2}% ${alignr}${top mem 2}
+${goto 35}${top name 3}${color}${goto 170}${top cpu 3}% ${alignr}${top mem 3}
+${goto 35}${top name 4}${color}${goto 170}${top cpu 4}% ${alignr}${top mem 4}
+${goto 35}${top name 5}${color}${goto 170}${top cpu 5}% ${alignr}${top mem 5}
+${goto 35}${top name 6}${color}${goto 170}${top cpu 6}% ${alignr}${top mem 6}
+${color1}${goto 45}Procesos: ${color}$processes ${goto 156} ${color1}Ejecutando: ${color}$running_processes
+# DISCOS
+${voffset -4}${color1}${font ConkySymbols:size=16}k${font} ${voffset -4}EXT4 $hr${color}
+${color1}${goto 35}root:${color} ${execpi 60 df -h / | awk '/nvme/ {print $5}'} used
+${color1}${goto 35}home:${color} ${execpi 60 df -h /home | awk '/nvme/ {print $5}'} used
+# REDES
+${voffset -4}${color1}${font ConkySymbols:size=16}k${font} ${voffset -4}GPU$hr${color}
+${color1}${goto 35}GPU:${color}${nvidia gputemp 0} 
+${color1}${goto 35}
+${goto 38}
+]]
