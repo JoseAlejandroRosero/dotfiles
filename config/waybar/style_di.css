@@ -1,0 +1,105 @@
+@import "colors.css";
+
+* {
+  /* General taskbar font, I like maple mono ^-^*/
+  font-family: Maple Mono NFPropo;
+  font-size: 14px;
+  padding: 0px;
+  border-radius: 0px;
+  background: transparent;
+  border: none;
+  min-height: 0;
+  margin: 0;
+}
+
+window#waybar {
+  /* Linear gradients are used because it makes less harsh rounded border radius, gtk bug :p */ 
+  padding: 2px;
+  border-style: none;
+}
+
+.modules-center {
+  background: @background;
+  padding: 6px 12px;
+  border-radius: 28px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+menu,
+tooltip{
+ background: @secondary_container;
+ border: 1px solid @outline;
+ border-radius: 8px;
+}
+
+tooltip label {
+  color: @on_secondary_container;
+  padding: 3px;
+}
+
+#tags {
+  margin: 0 10px 0 10px; 
+  box-shadow: none;
+}
+
+#tags button {
+  all: initial;
+  min-width: 0;
+  font-weight: bold;
+  margin: 0px 2px;
+  padding: 0px 6px;
+  border-radius: 16px;
+  transition: all 0.3s ease-in-out;
+  color: @on_baskground;
+}
+
+#tags button:hover {
+ background: @primary;
+ color: @on_primary;
+ transition: all 0.3s ease-in-out;
+}
+
+#wireplumbler:hover,
+menuitem:hover,
+#tags button.focused {
+ background: linear-gradient(135deg, @primary 0%, @secondary 50%, @tertiary 100%);
+ color: @scrim;
+ min-width: 30px;
+ transition: all 0.3s ease-in-out;
+}
+
+/*
+#workspaces button.hidden {
+  color: @on_background;
+  font-weight: bold;
+  background-color: transparent;
+}
+*/
+#tags button.occupied {
+  color: @on_primary;
+}
+
+#tags button.occupied:hover {
+  color: @tertiary_fixed;
+}
+
+#tags button.urgent {
+ background: @error;
+ color: @on_error;
+}
+
+#custom-power,
+#clock,
+#tray {
+ background: @surface;
+ padding:  0px 8px;
+ margin: 0px 5px;
+ border-radius: 16px;
+}
+
+#custom-power:hover,
+#clock:hover {
+ background: linear-gradient(135deg, @primary 0%, @secondary 50%, @tertiary 100%);
+ color: @scrim;
+ transition: all 0.3s ease-in-out;
+}

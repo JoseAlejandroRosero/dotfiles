@@ -1,0 +1,36 @@
+sort=-priority
+layer=overlay
+width=700
+height=600
+border-size=3
+border-radius=15
+icons=1
+icon-path=~/.local/share/icons:/usr/share/icons/
+icon-border-radius=16
+format=<b>%a-%s</b>\n%b
+max-icon-size=64
+default-timeout=2000
+ignore-timeout=0
+font=Maple Mono NFMono CN Italic Regular With-Color 14
+group-by=app-name
+anchor=top-center
+
+include=~/.config/mako/mako-colors
+
+
+# bindings
+on-button-right=dismiss --no-history
+on-button-middle=exec makoctl menu -n "$id" dmenu -p 'Select action: '
+on-notify=exec mpv --volume=130 /usr/share/sounds/freedesktop/stereo/message-new-instant.oga
+
+[app-name="io.github.slgobinath.SafeEyes" actionable]
+on-button-left=invoke-default-action
+on-notify=none
+
+[app-name="Music Player Daemon"]
+default-timeout=3500
+on-notify=none
+
+[app-name="notify-send"]
+on-notify=none
+format=<b>%s</b>\n%b

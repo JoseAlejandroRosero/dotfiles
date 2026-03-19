@@ -1,0 +1,153 @@
+@import "colors.css";
+
+* {
+  /* General taskbar font, I like maple mono ^-^*/
+  font-family: Maple Mono NFPropo;
+  font-size: 14px;
+  padding: 0px;
+  border-radius: 0px;
+  background: transparent;
+  border: none;
+  min-height: 0;
+  margin: 0;
+}
+
+window#waybar {
+  /* Linear gradients are used because it makes less harsh rounded border radius, gtk bug :p */ 
+  padding: 0px;
+  border-style: none;
+}
+
+menu,
+.modules-right,
+.modules-left {
+  background: @primary_a no-repeat;
+
+  margin: 4px;
+  padding: 2px 5px;
+  color: @on_primary;
+
+  border-style: solid;
+  border-color: @outline_variant;
+  border-width: 2px;
+  border-radius: 15px;
+
+  transition: background 350ms ease-in-out;
+  /* transition: background 350ms ease-in-out; */
+}
+
+tooltip{
+ background: linear-gradient(to bottom right, @primary_container 0%, @secondary_container 100%); 
+
+ border: 1px solid @outline;
+ border-radius: 8px;
+}
+
+tooltip label {
+  color: @on_secondary_container;
+}
+
+menuitem,
+#network,
+#battery,
+#clock,
+#custom-hexecute,
+#custom-power,
+#tray,
+#tags,
+#memory,
+#temperature,
+#bluetooth,
+#bluetooth.disabled,
+#cpu,
+#disk,
+/* #mpd, */
+#mpris,
+#mpd.stopped,
+#window,
+#wireplumber.muted,
+#wireplumber {
+  margin: 0 2px 0 1px; 
+  box-shadow: none;
+
+  padding: 0px 5px;
+
+  border: 1px solid transparent;
+  border-radius: 15px;
+}
+
+#clock {
+  margin-right: 6px;
+}
+
+menuitem:hover,
+#custom-power:hover,
+#custom-hexecute:hover,
+#clock:hover,
+#temperature:hover,
+#battery:hover,
+/* #mpd:hover, */
+#mpris:hover,
+#bluetooth:hover,
+#window:hover,
+#cpu:hover,
+#tray.active:hover,
+#wireplumber.muted:hover,
+#tags button.focused,
+#wireplumber:hover {
+  background: linear-gradient( to bottom right,  @primary 0%, @secondary 50%, @tertiary 100%);
+  color: @scrim;
+  transition: all 0.3s ease-in-out;
+}
+
+
+#tags button.focused {
+  min-width: 30pt;
+}
+
+#custom-power {
+  font-weight: bold;
+}
+
+#battery.warning,
+#battery.critical,
+#battery.urgent,
+#mpd.disconnected,
+#mpd.stopped,
+#temperature.critical,
+#tags button.urgent,
+#tray.needs-attention,
+#network.disconnected {
+  color: @on_error;
+  background: linear-gradient(to bottom, @error, @error_container);
+  min-width: 30pt;
+}
+
+#tray.passive,
+#tags button {
+  all: initial;
+  min-width: 0;
+  font-weight: bold;
+  margin: 0px 0.2cm;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+#tags button.focused:hover,
+#tray.active,
+#tags button.occupied:hover {
+  color: @tertiary_fixed;
+  background: linear-gradient(135deg, @primary_container 0%, @secondary_container 50%, @tertiary_container 100%);
+  transition: all 0.3s ease-in-out;
+}
+
+#tags button:hover {
+  background: @primary;
+  min-width: 30pt;
+  color: @on_primary_fixed_variant;
+}
+
+#tags button.occupied {
+  color: @on_secondary_fixed_variant;
+}
+

@@ -1,0 +1,18 @@
+# Material You colors
+
+background-color=#323200d0
+text-color=#d8bbf2ff
+border-color=#79619280
+progress-color=source #cbca80d0
+# Per-mode settings
+
+[mode=do-not-disturb]
+invisible=1
+on-notify=none
+
+[mode=silent]
+on-notify=none
+
+[urgency=high]
+border-color=#93000aFF
+on-notify=exec mpv --volume-max=250 --volume=250 /usr/share/sounds/freedesktop/stereo/dialog-error.oga
