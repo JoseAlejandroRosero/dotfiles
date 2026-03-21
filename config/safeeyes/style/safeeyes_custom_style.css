@@ -1,0 +1,110 @@
+/*
+* Safe Eyes is a utility to remind you to take break frequently
+* to protect your eyes from eye strain.
+
+* Copyright (C) 2016  Gobinath
+
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+@import "colors.css";
+
+.window_main {
+    background: @background_a;
+    border-color: transparent;
+}
+
+.btn_skip {
+    color: @primary;
+    font-size: 10pt;
+
+    padding: 10px 25px;
+
+    background: transparent;
+
+    border: 2px solid @primary ;
+    border-radius: 25px;
+}
+
+.btn_skip:hover {
+    background: linear-gradient(135deg, @primary_a 0%, @secondary_a 50%, @tertiary_a 100%);
+
+    color: @scrim;
+
+    border: 4px double @outline;
+
+    transition: all 0.6s ease-in-out;
+}
+
+.btn_postpone {
+    color: @secondary;
+    font-size: 10pt;
+
+    padding-top: 10px 25px;
+
+    background: transparent;
+
+    border: 2px solid @seconday;
+    border-radius: 25px;
+}
+
+.btn_postpone:hover {
+    background: linear-gradient(135deg, @foreground );
+    color: @on_secondary;
+}
+
+.lbl_message {
+    font-size: 22pt;
+    color: @primary;
+    font-weight: bold;
+}
+
+.lbl_count {
+    font-size: 12pt;
+    color: @primary;
+}
+
+.lbl_widget {
+    font-size: 9pt;
+    color: @primary;
+}
+
+.btn_circle {
+    border-radius: 25px;
+}
+
+.lbl_plugin_name {
+    font-weight: bold;
+}
+
+.lbl_plugin_description {
+    color: @on_surface;
+}
+
+.btn_plugin_extra_link {
+    padding-left: 0px;
+}
+
+.info_bar_long_break {
+    opacity: 0.9;
+    border-radius: 5px;
+}
+
+
+.toolbar {
+    background: @tertiary_a;
+    opacity: 0.9;
+    border: 1px solid transparent;
+    border-radius: 8px;
+}

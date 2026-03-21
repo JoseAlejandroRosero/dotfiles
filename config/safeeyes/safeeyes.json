@@ -21,7 +21,7 @@
             "settings": {
                 "skip_break_windows": "",
                 "take_break_windows": "",
-                "unfullscreen": true,
+                "unfullscreen": false,
                 "while_on_battery": false
             },
             "version": "0.0.2"
@@ -65,7 +65,7 @@
                     }
                 ],
                 "show_long_time_in_tray": false,
-                "show_time_in_tray": false
+                "show_time_in_tray": true
             },
             "version": "0.0.3"
         },
@@ -73,8 +73,8 @@
             "enabled": true,
             "id": "smartpause",
             "settings": {
-                "idle_time": 5,
-                "postpone_if_active": false
+                "idle_time": 5.0,
+                "postpone_if_active": true
             },
             "version": "0.0.3"
         },
@@ -82,7 +82,7 @@
             "enabled": true,
             "id": "screensaver",
             "settings": {
-                "command": "wlock",
+                "command": "hyprlock",
                 "min_seconds": 3.0
             },
             "version": "0.0.2"
@@ -111,7 +111,7 @@
     ],
     "postpone_duration": 5,
     "postpone_unit": "minutes",
-    "pre_break_warning_time": 10,
+    "pre_break_warning_time": 2,
     "random_order": true,
     "short_break_duration": 15,
     "short_break_interval": 15,
