@@ -1,0 +1,65 @@
+@import url('../waybar/colors.css');
+
+* {
+  font-family: Noto Sans;
+  color: @on_surface;
+  background: transparent;
+  
+}
+
+#window {
+  background: @surface_a;
+  border-radius: 9px;
+  margin: auto;
+  padding: 12px;
+
+  border-style: solid;
+  border-color: @outline:
+  border-width: 1px;
+}
+
+#input {
+  padding: 10px;
+  border-radius: 8px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: @outline;
+  margin: 8px;
+  background-image: linear-gradient(to top, @surface_dim_a, @surface_variant_a);
+  box-shadow: inset 0px -5px 8px rgba(0,0,0,0.4);
+}
+
+#outer-box {
+  padding: 0px;
+  box-shadow inset 0px 0px 8px @shadow_a;
+}
+
+#inner-box {
+  padding: 0px;
+}
+
+#entry {
+  border-radius: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(255,255,255,0.01);
+  border-bottom-color: rgba(255,255,255,0.25);
+  border-right-color: rgba(255,255,255,0.25);
+
+  padding: 4px;
+  margin: 4px;
+  margin-left: 8px;
+  margin-right: 8px;
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.3)0%, @surface_dim_a 50%, @surface_bright_a 50%);
+}
+#entry:selected {
+  background-color: @tertiary_a;
+  outline: none;
+  box-shadow: 0px 0px 6px @shadow_a;
+}
+#img {
+  margin-right: 6px;
+}
+#text {
+  margin: 2px;
+}

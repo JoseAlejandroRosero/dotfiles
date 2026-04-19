@@ -1,0 +1,77 @@
+@import ".config/waybar/colors.css";
+
+* {
+  font-family: Maple Mono NFMono CN;
+  background: transparent;
+  color: @scrim;
+}
+
+#window {
+  color: @scrim;
+  border-color: @outline;
+  border-style: solid;
+  border-width: 1px;
+
+  /*Linear gradient background instead of standard background, because it makes cleaner border-radius cuts, issa bug :p*/
+  background-image: linear-gradient(to bottom right, alpha(@primary,0.65) 0%, alpha(@secondary,0.65) 50%, alpha(@tertiary,0.65) 100%);
+  border-radius: 14px;
+}
+#scroll {
+  border-top-style: solid;
+  border-width: 1px;
+  border-color: @primary;
+}
+#inner-box {
+  padding-top: 12px;
+}
+#entry {
+  outline: none;
+  color: @primary;
+  padding: 6px;
+  margin-bottom: 8px;
+  margin-left: 12px;
+  margin-right: 12;
+
+  border-radius: 12px;
+}
+
+#entry:selected {
+  background: linear-gradient(to bottom right, @primary 0%, @secondary 50%, @tertiary 100%);
+  color: @on_surface;
+  font-weight: bold;
+  border-style: none;
+  border-width: 1px;
+  border-bottom-style: solid;
+  border-top-style: solid;
+  border-color: @outline_variant;
+}
+
+#input {
+  background: alpha(@surface_bright, 0.65);
+  color: @primary;
+  border-color: @outline;
+
+  border-style: none;
+  border-bottom-style: solid;
+  border-width: 1px;
+
+  font-style: normal;
+
+  border-radius: 8;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+
+  padding: 12px;
+  margin: 8px;
+}
+#input:focus {
+  background: alpha(@surface_tint,0.65);
+  color: @on_primary;
+  border-color: @outline;
+  font-style: italic;
+}
+
+#image {
+  padding: 4px;
+  margin-right: 6px;
+}
